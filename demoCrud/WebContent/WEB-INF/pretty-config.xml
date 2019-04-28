@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<pretty-config xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" targetNamespace="http://ocpsoft.com/prettyfaces/3.3.3"
+	xmlns="http://ocpsoft.com/prettyfaces/3.3.3">
+	
+	
+	<url-mapping id="inicio">
+		<pattern value="/" />
+		<view-id value="/faces/jsfDocs/inicio.xhtml" />
+	</url-mapping>
+	
+	<url-mapping id="mntCliente">
+		<pattern value="/mantenimiento/cliente" />
+		<view-id value="/faces/jsfDocs/modulos/mantenimiento/cliente/mntCliente.xhtml" />
+	</url-mapping>
+	
+</pretty-config>

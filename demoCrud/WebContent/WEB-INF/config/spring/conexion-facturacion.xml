@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		
+	<bean id="dsFacturacion" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="username" value="facturacion"/>
+		<property name="password" value="123"/>
+	</bean>		
+		
+	<bean id="tmFacturacion" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dsFacturacion" />
+		<qualifier value="Facturacion" />
+	</bean>
+	
+	<bean id="ssfFacturacion" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dsFacturacion" />
+		<property name="configLocation" value="WEB-INF/config/mybatis/mybatis-config.xml" />
+		<property name="mapperLocations"
+			value="classpath*:pe/com/democrud/dao/mapper/*.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="pe.com.democrud.dao" />
+		<property name="sqlSessionFactoryBeanName" value="ssfFacturacion" />
+	</bean>
+
+</beans>

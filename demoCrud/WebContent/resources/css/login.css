@@ -1,0 +1,42 @@
+html, body {
+	font-family: Arial, Verdana, sans-serif;
+	background-color: #CCCCCC !important;
+}
+
+input {
+	text-transform: uppercase;
+}
+
+/* COLOR CABECERA PANEL BOOTSFACES */
+.panel-primary>.panel-heading {
+	background-image: linear-gradient(to bottom, #0F284A 0%, #0F284A 100%)
+		!important;
+	/*color: #fff; */
+	background-color: #0F284A !important;
+	border-color: #0F284A !important;
+}
+
+.panel-primary {
+	border-color: #0F284A !important;
+}
+
+/* ESTILO PARA EL PANEL LOGIN */
+.panelmedio {
+	font-weight: bold !important;
+	background-color: #06396E !important;
+	color: #CCCCCC !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	float: none !important
+}
+
+.panelmedio .panel-heading {
+	text-align: center !important;
+}
+
+/* ESTILO PARA EL CONTENEDOR */
+.contenedorLogin {
+	margin-right: auto !important;
+	margin-left: auto !important;
+	float: none !important
+}

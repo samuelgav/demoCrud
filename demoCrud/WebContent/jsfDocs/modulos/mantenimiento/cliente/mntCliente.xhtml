@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+<ui:composition template="/WEB-INF/plantillas/plantilla.xhtml">
+
+	<ui:define name="contenido">
+		
+		<h:form id="frmCliente" styleClass="fontContent">
+			<b:container>
+				
+				<b:panel id="panelBusqueda">
+					
+					<b:well styleClass="wellTitle">
+						<h3>MANTENIMIENTO DE CLIENTES</h3>	
+					</b:well>
+					
+					<b:well styleClass="wellTitle">
+						<h3>BUSQUEDA DE CLIENTES</h3>	
+					</b:well>
+					
+					<b:row style="margin-left:2px;">
+						<b:column span="2">
+							<p:outputLabel value="Nombres" />
+						</b:column>
+						<b:column span="2">
+							<b:inputText id="expsan" value="#{clienteBean.filtro}">
+							</b:inputText>
+						</b:column>
+					</b:row>
+					
+					<b:row style="margin-bottom:10px;">
+						<b:column colMd="4" offsetMd="4">
+							<b:commandButton value="Buscar"
+								actionListener="#{clienteBean.buscar}"
+								update="frmCliente" ajax="true" look="primary"
+								icon-awesome="fa-search" large-screen="4" medium-screen="4"
+								tiny-screen="4" process="@form" />
+							<b:commandButton value="Limpiar"
+								actionListener="#{clienteBean.limpiarBusqueda}"								
+								update="frmCliente" ajax="true" look="primary"
+								icon-awesome="fa-eraser" large-screen="4" medium-screen="4"
+								tiny-screen="4" />
+							<b:commandButton value="Nuevo" look="primary" ajax="true"
+								process="@this" icon-awesome="fa-plus"
+								actionListener="#{clienteBean.abrirDlg}" large-screen="4"
+								medium-screen="4" tiny-screen="4" />
+						</b:column>
+					</b:row>
+					
+					<b:messages />
+					<p:separator />
+					
+					<b:row>
+						<b:column>
+							<b:dataTable id="dtlistaEntidad"
+								value="#{clienteBean.listaCliente}" var="data"
+								widgetVar="wgListaCliente" striped="true" lang="es"
+								responsive="true" style="width: 100%;">
+
+								<b:dataTableColumn label="Codigo"
+									value="#{data.codCliente}"
+									style="text-align:center;width:10%;">
+								</b:dataTableColumn>
+
+								<b:dataTableColumn label="Nombre"	
+									value="#{data.nombres}"								
+									style="text-align:center;width:20%;">
+								</b:dataTableColumn>
+
+								<b:dataTableColumn label="Apellido"
+									value="#{data.apellidos}" 
+									style="text-align:center;width:20%;">
+								</b:dataTableColumn>
+								
+								<b:dataTableColumn label="Direccion"
+									value="#{data.direccion}"  
+									style="text-align:center;width:40%;">
+								</b:dataTableColumn>
+
+								<b:dataTableColumn label="Opciones"
+									style="text-align:center;width:10%;" orderable="false">
+									<b:commandButton title="Editar" tooltip="Editar asuntos"	
+										action="#{clienteBean.cargarEditar(data)}"									
+										styleClass="btn-style" onclick="this.form.target='_self'">
+										<b:image library="images/iconos" name="icon-expediente.png" />
+									</b:commandButton>
+								</b:dataTableColumn>
+							</b:dataTable>
+						</b:column>
+					</b:row>
+					
+				</b:panel>
+			
+			</b:container>
+		</h:form>	
+		
+		<h:form id="formMdCliente" styleClass="fontContent">
+			<b:modal id="mdCliente" styleClass="scCliente" title="Mantenimiento"
+				closable="false" close-on-escape="false" backdrop="false"
+				size="modal-md" headerClass="headerModal">
+				<b:panel id="pnlDatos">
+					<b:row>
+						<b:column>
+							<b:messages id="msgErrors" globalOnly="true" colXs="12"
+								colMd="12" />
+						</b:column>
+					</b:row>
+
+					<b:row>
+						<b:column span="4">
+							<p:outputLabel value="Nombres" />
+						</b:column>
+						<b:column span="8">
+							<b:inputText value="#{clienteBean.nombres}" />
+						</b:column>
+					</b:row>
+
+					<b:row>
+						<b:column span="4">
+							<p:outputLabel value="Apellidos" />
+						</b:column>
+						<b:column span="8">
+							<b:inputText value="#{clienteBean.apellidos}" />
+						</b:column>
+					</b:row>
+					
+					<b:row>
+						<b:column span="4">
+							<p:outputLabel value="Direccion" />
+						</b:column>
+						<b:column span="8">
+							<b:inputText value="#{clienteBean.direccion}" />
+						</b:column>
+					</b:row>
+					
+				</b:panel>
+
+				<f:facet name="footer">
+					<b:commandButton value="Cerrar"
+						oncomplete="$('.scCliente').modal('hide')" look="primary"
+						ajax="true" process="@this" />
+
+					<b:commandButton value="Guardar" look="primary" process="@form"	
+						actionListener="#{clienteBean.grabar}"					
+						icon-awesome="fa-save" ajax="true" />
+				</f:facet>
+			</b:modal>
+		</h:form>
+	
+	</ui:define>
+
+
+</ui:composition>
+</html>

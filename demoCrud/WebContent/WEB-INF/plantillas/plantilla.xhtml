@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+	
+	<h:head>
+	<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+	<title>#{sys['nombre']}</title>
+
+	<link rel="stylesheet" href="#{request.contextPath}/resources/lte2.3/dist/css/AdminLTE.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/lte2.3/dist/css/skins/_all-skins.min.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/resources/css/estilos.css" />
+	<link rel="shortcut icon" href="#{request.contextPath}/resources/images/principal/favicon.png" type="image/x-icon" />
+	
+</h:head>
+
+<h:body class="hold-transition skin-blue sidebar-mini">
+
+	<script src="#{request.contextPath}/resources/lte2.3/bootstrap/js/bootstrap.min.js" />
+	<script src="#{request.contextPath}/resources/lte2.3/dist/js/app.js" />
+	<script src="#{request.contextPath}/resources/js/util.js" />
+
+	<div class="wrapper">
+		<header class="main-header">
+			
+			<!-- Logo -->
+			<a class="logo">
+				<!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini">
+					<b:image library="images/logos" name="lupa.png" />
+				</span>
+				
+				<!-- logo for regular state and mobile devices -->
+				<span class="logo-lg">
+					<b:image library="images/logos" name="sunafil02.png" />
+				</span>
+			</a>
+
+			<!-- Header Navbar: style can be found in header.less -->
+			<nav class="navbar navbar-static-top">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
+					role="button">
+					<span class="sr-only">Menú</span>
+				</a>
+				
+				<span class="header">
+					<h:outputText class="center-title-app" value="#{sys['nombre']}" />
+				</span>
+				
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						
+						<li class="dropdown notifications-menu" >
+							<b:form rendered="#{loginBean.dataAsignados}">
+								<b:navCommandLink 
+								 	styleClass="dropdown-toggle" 								
+									data-toggle="dropdown">						
+									<b:image 	library="images/iconos" 
+												name="icon-alerta.png" 
+												styleClass="btn-navbar"/>									
+								</b:navCommandLink>
+							</b:form>
+						</li>
+						
+						<!-- User Account: style can be found in dropdown.less -->
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="hidden-xs">
+									<h:outputText 
+										value="SAMUEL GAVIDIA MAMANI" />
+								</span>
+								
+								<span class="visible-xs">
+									<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+								</span>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li class="user-header">
+									<p>
+										<h:outputText
+											value="SAMUEL GAVIDIA MAMANI" />
+										-
+										<h:outputText value="ADMINISTRADOR" />										
+									</p>
+								</li>
+								
+								<!-- Menu Footer-->
+								<b:form>
+									<li class="user-footer">
+										<div class="pull-right">
+											<b:commandButton value="Salir"
+												 look="primary" />
+										</div>
+									</li>
+								</b:form>
+							</ul>
+						</li>
+						
+					</ul>
+				</div>
+
+			</nav>
+		</header>
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar">
+			
+			<!-- sidebar: style can be found in sidebar.less -->
+			<b:form id="formMenu2">
+				<section class="sidebar">
+				
+					<ul class="sidebar-menu">
+						
+						<li class="header">MAIN NAVIGATION</li>
+											
+						<li class="treeview">
+							
+								<a href="#">
+									<i class="fa fa-table" />
+									<span><h:outputText value="Mantenimiento" /></span>
+									<span class="pull-right-container">
+										<i class="fa fa-angle-left pull-right" />
+									</span>
+								</a>
+								
+								<ul class="treeview-menu">									
+										<li>
+											<b:navCommandLink action="#{indexBean.redirectCliente}"
+												value="Cliente" ajax="false" />
+										</li>									
+								</ul>
+								
+							
+						</li>
+					</ul>
+				</section>
+			</b:form>
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" id="contenido">
+			<section class="content">
+				<ui:insert name="contenido">
+				</ui:insert>
+			</section>
+		</div>
+
+
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> #{sys['version']}
+			</div>
+			<strong>#{sys['copyright']} Contacto:#{sys['contacto']}</strong>
+		</footer>
+
+	</div>
+
+
+</h:body>
+	
+	
+</html>
